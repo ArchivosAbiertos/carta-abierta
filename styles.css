@@ -471,3 +471,35 @@ p {
     opacity: 0.7;
     font-family: var(--font-sans);
 }
+
+/* Tablas de datos */
+.table-container {
+    overflow-x: auto;
+    margin: 30px 0;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid var(--border-color);
+    padding: 12px 10px;
+}
+
+.data-table th {
+    background-color: #f0f0ed;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.data-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+    background-color: #fcfcfc;
+}
