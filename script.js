@@ -37,15 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadSigners() {
         try {
-            console.log('Intentando cargar firmas.csv (TSV)...');
+            console.log('Iniciando carga de firmas...');
             const response = await fetch('firmas.csv');
-            if (!response.ok) throw new Error('No se pudo cargar el archivo');
+            if (!response.ok) throw new Error('No se pudo encontrar el archivo "firmas.csv"');
             
             const data = await response.text();
             const lines = data.split(/\r?\n/);
             let signers = [];
 
-            // Usamos tabulación (\t) como separador principal
+            // Usamos tabulación (\t) as delimiter
             const separator = '\t'; 
 
             for (let i = 1; i < lines.length; i++) {
@@ -65,12 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Ordenar firmas alfabéticamente por nombre
+            // Ordenar alfabéticamente
             signers.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
 
-            console.log('Firmas ordenadas:', signers);
-
             if (signers.length > 0) {
+                // Limpiar marcador de posición y rellenar con datos reales
                 signersContainer.innerHTML = '';
                 signers.forEach(signer => {
                     const entry = document.createElement('div');
@@ -82,13 +81,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     signersContainer.appendChild(entry);
                 });
             } else {
-                console.warn('No se encontraron firmas válidas en el archivo.');
+                signersContainer.innerHTML = '<div class="signer-entry placeholder-entry"><p>No se encontraron datos en el archivo.</p></div>';
             }
         } catch (error) {
             console.error('Error cargando firmas:', error);
-            if (window.location.protocol === 'file:') {
-                console.error('CORS: Los navegadores bloquean la carga de archivos locales. Prueba en GitHub o con un servidor local.');
-            }
+            const errorMsg = window.location.protocol === 'file:' 
+                ? 'El navegador bloquea la carga de archivos locales (CORS). Sube los cambios a GitHub o usa un servidor local para probar.' 
+                : 'Error al abrir "firmas.csv". Asegúrate de que el archivo existe y tiene el formato correcto.';
+            
+            signersContainer.innerHTML = `<div class="signer-entry placeholder-entry"><p style="color: #8b0000; font-weight: 700;">⚠️ ${errorMsg}</p></div>`;
         }
     }
 
