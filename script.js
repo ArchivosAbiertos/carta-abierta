@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Activar botón clicado y su contenido
             button.classList.add('active');
-            document.getElementById(target).classList.add('active');
+            const targetEl = document.getElementById(target);
+            if (targetEl) targetEl.classList.add('active');
 
             // Scroll suave hacia arriba al cambiar de pestaña
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -25,11 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleTriggers.forEach(trigger => {
         trigger.addEventListener('click', () => {
             const parent = trigger.closest('.collapsible-section');
-            parent.classList.toggle('open');
+            if (parent) parent.classList.toggle('open');
         });
     });
 
-    // Lógica para cargar firmas desde CSV (formato TAB)
+    // Lógica para cargar firmas desde CSV (formato TAB por defecto, pero flexible)
     const signersContainer = document.getElementById('signers-container');
     if (signersContainer) {
         loadSigners();
@@ -39,14 +40,23 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             console.log('Iniciando carga de firmas...');
             const response = await fetch('firmas.csv');
-            if (!response.ok) throw new Error('No se pudo encontrar el archivo "firmas.csv"');
+            if (!response.ok) throw new Error('Cargando...');
             
             const data = await response.text();
+            console.log('Datos raw del CSV:', data);
+            
             const lines = data.split(/\r?\n/);
             let signers = [];
 
-            // Usamos tabulación (\t) as delimiter
-            const separator = '\t'; 
+            // Identificar el separador automáticamente (Tab, Punto y coma o Coma)
+            const firstLine = lines[0] || '';
+            let separator = '\t'; // Por defecto Tab
+            if (firstLine.includes(';') && (firstLine.split(';').length > firstLine.split('\t').length)) {
+                separator = ';';
+            } else if (firstLine.includes(',') && (firstLine.split(',').length > firstLine.split('\t').length)) {
+                separator = ',';
+            }
+            console.log('Separador detectado:', separator === '\t' ? 'TAB' : separator);
 
             for (let i = 1; i < lines.length; i++) {
                 const line = lines[i].trim();
@@ -69,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
             signers.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
 
             if (signers.length > 0) {
-                // Limpiar marcador de posición y rellenar con datos reales
                 signersContainer.innerHTML = '';
                 signers.forEach(signer => {
                     const entry = document.createElement('div');
@@ -81,15 +90,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     signersContainer.appendChild(entry);
                 });
             } else {
-                signersContainer.innerHTML = '<div class="signer-entry placeholder-entry"><p>No se encontraron datos en el archivo.</p></div>';
+                signersContainer.innerHTML = '<div class="signer-entry placeholder-entry"><p>No se encontraron datos válidos en el archivo.</p></div>';
             }
         } catch (error) {
             console.error('Error cargando firmas:', error);
-            const errorMsg = window.location.protocol === 'file:' 
-                ? 'El navegador bloquea la carga de archivos locales (CORS). Sube los cambios a GitHub o usa un servidor local para probar.' 
-                : 'Error al abrir "firmas.csv". Asegúrate de que el archivo existe y tiene el formato correcto.';
-            
-            signersContainer.innerHTML = `<div class="signer-entry placeholder-entry"><p style="color: #8b0000; font-weight: 700;">⚠️ ${errorMsg}</p></div>`;
+            // El mensaje de error solo se muestra si el protocolo es file: o si hay un fallo real
+            if (window.location.protocol === 'file:') {
+                signersContainer.innerHTML = `
+                    <div class="signer-entry placeholder-entry">
+                        <p style="color: #8b0000; font-weight: 700;">⚠️ Modo Local Detectado</p>
+                        <p style="font-size: 0.9rem;">El navegador bloquea la lectura automática de archivos locales (CORS).</p>
+                        <p style="font-size: 0.8rem; font-style: italic; margin-top: 10px;">En cuanto subas los cambios a GitHub, los firmantes aparecerán aquí sin problemas.</p>
+                    </div>`;
+            } else {
+                signersContainer.innerHTML = '<div class="signer-entry placeholder-entry"><p>Error al abrir el archivo de firmas.</p></div>';
+            }
         }
     }
 
