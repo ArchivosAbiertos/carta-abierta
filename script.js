@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Lógica para cargar firmas desde CSV
+    // Lógica para cargar firmas desde CSV (formato TAB)
     const signersContainer = document.getElementById('signers-container');
     if (signersContainer) {
         loadSigners();
@@ -37,32 +37,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadSigners() {
         try {
+            console.log('Intentando cargar firmas.csv (TSV)...');
             const response = await fetch('firmas.csv');
-            if (!response.ok) throw new Error('No se pudo cargar el archivo de firmas');
+            if (!response.ok) throw new Error('No se pudo cargar el archivo');
             
             const data = await response.text();
-            const lines = data.split('\n');
-            const signers = [];
+            const lines = data.split(/\r?\n/);
+            let signers = [];
 
-            // Empezamos en 1 para saltar la cabecera
+            // Usamos tabulación (\t) como separador principal
+            const separator = '\t'; 
+
             for (let i = 1; i < lines.length; i++) {
                 const line = lines[i].trim();
                 if (line) {
-                    const [nombre, departamento, universidad] = line.split(';');
-                    if (nombre) {
+                    const columns = line.split(separator);
+                    const nombre = columns[0] ? columns[0].trim() : '';
+                    const depto = columns[1] ? columns[1].trim() : '';
+                    const univ = columns[2] ? columns[2].trim() : '';
+                    
+                    if (nombre && nombre.toLowerCase() !== 'nombre') {
                         signers.push({
-                            nombre: nombre.trim(),
-                            institucion: `${departamento.trim()}${departamento && universidad ? ', ' : ''}${universidad.trim()}`
+                            nombre: nombre,
+                            institucion: depto && univ ? `${depto}, ${univ}` : (depto || univ || '')
                         });
                     }
                 }
             }
 
-            // Renderizar firmas
+            // Ordenar firmas alfabéticamente por nombre
+            signers.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
+
+            console.log('Firmas ordenadas:', signers);
+
             if (signers.length > 0) {
-                // Limpiar marcador de posición si existen firmas reales
                 signersContainer.innerHTML = '';
-                
                 signers.forEach(signer => {
                     const entry = document.createElement('div');
                     entry.className = 'signer-entry';
@@ -72,9 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     signersContainer.appendChild(entry);
                 });
+            } else {
+                console.warn('No se encontraron firmas válidas en el archivo.');
             }
         } catch (error) {
             console.error('Error cargando firmas:', error);
+            if (window.location.protocol === 'file:') {
+                console.error('CORS: Los navegadores bloquean la carga de archivos locales. Prueba en GitHub o con un servidor local.');
+            }
         }
     }
 
