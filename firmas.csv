@@ -1,15 +1,16 @@
-nombre	departamento	universidad
-Laura Bolaños Giner	Departamento de Historia Moderna y Contemporánea 	Universidad Complutense de Madrid
-Víctor Aparicio Rodríguez	Departamento de Historia Social y del Pensamiento Político	UNED
-Pablo Alcántara Pérez	Departamento de Historia Contemporánea	Universidad Autónoma de Madrid
-Alejandro Pérez-Olivares García	Departamento de Geografía e Historia	Universidad de La Laguna
-Carlos Píriz	Departamento de Historia Moderna, Contemporánea, de América y del Arte	Universidad de Cádiz
-Santiago Moreno Tello 	Área de Biblioteca, archivos y museos	Universidad de Cádiz 
-Jose Marchena Dominguez	Departamento de Historia moderna y contemporánea 	Universidad de Cádiz 
-Juan Carlos García Funes 	Departamento de Ciencias Humanas y de la Educación 	Universidad Pública de Navarra 
-Daniel Oviedo Silva	Departamento de Ciencias Humanas y de la Educación	Universidad Pública de Navarra
-Fernando Hernández Holgado	Departamento de Historia Moderna e Historia Contemporánea	Universidad Complutense de Madrid
-Ana Martínez Rus	Departamento de Historia Moderna y de Historia Contemporánea	Universidad Complutense de Madrid
-Carme Molinero Ruiz	Departament de Història Moderna i Contemporània	Universitat Autònoma de Barcelona
-Mario Lozano Martín	Departament de Ciència Política, Dret Constitucional i Filosofia del Dret	Universidad de Barcelona
+nombre	universidad	departamento
+Laura Bolaños Giner	Universidad Complutense 	Departamento de Historia Moderna y Contemporánea 
+Víctor Aparicio Rodríguez	UNED	Departamento de Historia Social y del Pensamiento Político
+Pablo Alcántara Pérez	Universidad Autónoma de Madrid	Departamento de Historia Contemporánea
+Alejandro Pérez-Olivares García	Universidad de La Laguna	Departamento de Geografía e Historia
+Carlos Píriz	Universidad de Cádiz	Departamento de Historia Moderna, Contemporánea, de América y del Arte
+Santiago Moreno Tello 	Universidad de Cádiz 	Área de Biblioteca, archivos y museos
+Jose Marchena Dominguez	Universidad de Cádiz 	Departamento de Historia moderna y contemporánea 
+Juan Carlos García Funes 	Universidad Pública de Navarra 	Departamento de Ciencias Humanas y de la Educación 
+Daniel Oviedo Silva	Universidad Pública de Navarra	Departamento de Ciencias Humanas y de la Educación
+Fernando Hernández Holgado	Universidad Complutense de Madrid	Departamento de Historia Moderna e Historia Contemporánea
+Ana Martínez Rus	Universidad Complutense	Departamento de Historia Moderna y de Historia Contemporánea
+Carme Molinero Ruiz	Universitat Autònoma de Barcelona	Departament de Història Moderna i Contemporània
+Luis Mario Lozano Martín	Universidad de Barcelona	Departament de Ciència Política, Dret Constitucional i Filosofia del Dret
+
 
