@@ -322,11 +322,12 @@ p {
     gap: 8px;
 }
 
-.signers-intro p {
+.signers-intro-text {
     font-size: 0.85rem;
     font-style: italic;
     color: var(--muted-ink);
-    margin-top: 5px;
+    margin: 0;
+    padding: 0;
 }
 
 .signers-list {

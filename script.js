@@ -59,9 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const line = lines[i].trim();
                 if (line) {
                     const columns = line.split(separator);
+                    
+                    // Nuevo orden solicitado: nombre, universidad, departamento
                     const nombre = columns[0] ? columns[0].trim() : '';
-                    const depto = columns[1] ? columns[1].trim() : '';
-                    const univ = columns[2] ? columns[2].trim() : '';
+                    const univ = columns[1] ? columns[1].trim() : '';
+                    const depto = columns[2] ? columns[2].trim() : '';
                     
                     if (nombre && nombre.toLowerCase() !== 'nombre') {
                         signers.push({
