@@ -322,19 +322,25 @@ p {
     gap: 8px;
 }
 
+.signers-intro p {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--muted-ink);
+    margin-top: 5px;
+}
+
 .signers-list {
     margin-top: 40px;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 5px;
 }
 
 .signer-entry {
-    padding: 10px 0;
-    border-bottom: 1px dotted var(--border-color);
+    padding: 4px 0;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0;
 }
 
 .signer-name {
@@ -347,6 +353,13 @@ p {
     font-family: var(--font-sans);
     font-size: 0.8rem;
     color: var(--muted-ink);
+}
+
+.signer-univ {
+    font-weight: 500;
+}
+
+.signer-dept {
     font-style: italic;
 }
 

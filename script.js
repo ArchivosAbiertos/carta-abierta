@@ -39,12 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadSigners() {
         try {
             console.log('Iniciando carga de firmas...');
-            const response = await fetch('firmas.csv');
+            const response = await fetch('https://raw.githubusercontent.com/ArchivosAbiertos/carta-abierta/refs/heads/main/firmas.csv');
             if (!response.ok) throw new Error('Cargando...');
             
             const data = await response.text();
-            console.log('Datos raw del CSV:', data);
-            
             const lines = data.split(/\r?\n/);
             let signers = [];
 
@@ -56,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (firstLine.includes(',') && (firstLine.split(',').length > firstLine.split('\t').length)) {
                 separator = ',';
             }
-            console.log('Separador detectado:', separator === '\t' ? 'TAB' : separator);
 
             for (let i = 1; i < lines.length; i++) {
                 const line = lines[i].trim();
@@ -69,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (nombre && nombre.toLowerCase() !== 'nombre') {
                         signers.push({
                             nombre: nombre,
-                            institucion: depto && univ ? `${depto}, ${univ}` : (depto || univ || '')
+                            departamento: depto,
+                            universidad: univ
                         });
                     }
                 }
@@ -79,22 +77,32 @@ document.addEventListener('DOMContentLoaded', () => {
             signers.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
 
             if (signers.length > 0) {
+                // Limpiar marcador de posición
                 signersContainer.innerHTML = '';
                 signers.forEach(signer => {
                     const entry = document.createElement('div');
                     entry.className = 'signer-entry';
+                    
+                    // Construcción de la línea de institución (Universidad normal, Depto en cursiva)
+                    let instHTML = '';
+                    if (signer.universidad) {
+                        instHTML += `<span class="signer-univ">${signer.universidad}</span>`;
+                    }
+                    if (signer.departamento) {
+                        instHTML += (instHTML ? ', ' : '') + `<span class="signer-dept">${signer.departamento}</span>`;
+                    }
+
                     entry.innerHTML = `
                         <span class="signer-name">${signer.nombre}</span>
-                        <span class="signer-institution">${signer.institucion}</span>
+                        <span class="signer-institution">${instHTML}</span>
                     `;
                     signersContainer.appendChild(entry);
                 });
             } else {
-                signersContainer.innerHTML = '<div class="signer-entry placeholder-entry"><p>No se encontraron datos válidos en el archivo.</p></div>';
+                signersContainer.innerHTML = '<div class="signer-entry placeholder-entry"><p>No se encontraron datos válidos.</p></div>';
             }
         } catch (error) {
             console.error('Error cargando firmas:', error);
-            // El mensaje de error solo se muestra si el protocolo es file: o si hay un fallo real
             if (window.location.protocol === 'file:') {
                 signersContainer.innerHTML = `
                     <div class="signer-entry placeholder-entry">
