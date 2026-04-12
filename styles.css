@@ -330,26 +330,24 @@ p {
 }
 
 .signer-entry {
-    padding: 12px 0;
+    padding: 10px 0;
     border-bottom: 1px dotted var(--border-color);
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 20px;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .signer-name {
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: var(--ink);
 }
 
 .signer-institution {
     font-family: var(--font-sans);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--muted-ink);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-style: italic;
 }
 
 .placeholder-entry {
