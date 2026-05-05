@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=1.8">
+    <link rel="stylesheet" href="styles.css?v=2.5">
 </head>
 
 <body>
@@ -18,22 +18,17 @@
 
     <nav class="institutional-tabs">
         <button class="tab-btn active" data-target="manifiesto">Carta Abierta</button>
-        <button class="tab-btn" data-target="firmantes">Firmantes</button>
+        <button class="tab-btn" data-target="prensa">Prensa</button>
     </nav>
 
     <main class="letter-container">
         <!-- SECCIÓN CARTA ABIERTA -->
         <article id="manifiesto" class="tab-content active">
             <div class="manuscript">
-                <h2 class="letter-title">Carta abierta a Fernando Grande-Marlaska:<br><span class="subtitle-text">Por
-                        derecho de acceso a la documentación histórica del Ministerio del Interior</span></h2>
-
-
                 <header class="letter-header">
                     <h1 class="addressee">A la atención de Fernando Grande-Marlaska</h1>
                     <p class="subject">Ministro del Interior</p>
                 </header>
-
 
                 <p>Señor Ministro,</p>
 
@@ -66,49 +61,76 @@
                 </ul>
 
                 <div class="signature-section">
-                    <div class="signature-card">
-                        <h3 class="form-title">Adhesión a la carta abierta</h3>
-                        <p class="form-disclaimer">Para garantizar la integridad del proceso y la validación de la
-                            identidad
-                            académica, la recogida de firmas se realiza a través de la plataforma institucional de
-                            Microsoft
-                            Forms.</p>
-
-                        <div class="action-container">
-                            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=qzwxosOxOk-7ESFXRH3btCMUDjMQuJxPo-MqnIE8IlRUNU84ODVHMlA4Vk5WU0paWU9QMU80SzBaTS4u"
-                                class="classic-btn btn-link" target="_blank" rel="noopener noreferrer">
-                                Acceder al Formulario de Firma
-                            </a>
-                            <p class="security-note">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                                </svg>
-                                El enlace se abrirá en una nueva pestaña segura de Microsoft 365.
-                            </p>
+                    <h3 class="firman-header">Firman esta carta:</h3>
+                    <p class="signers-intro-text"><a href="https://ahistcon.org/carta-abierta-a-fernando-grande-marlaska-por-derecho-de-acceso-a-la-documentacion-historica-del-ministerio-del-interior/" target="_blank" rel="noopener noreferrer" class="institutional-link">La Asociación de Historia Contemporánea</a> y las siguientes 501 personas del mundo de la docencia y la investigación académica:</p>
+                    <div class="signers-list" id="signers-container">
+                        <div class="signer-entry placeholder-entry">
+                            <p>Cargando listado de adhesiones...</p>
                         </div>
                     </div>
                 </div>
             </div>
         </article>
 
-        <!-- SECCIÓN FIRMANTES -->
-        <article id="firmantes" class="tab-content">
+        <!-- SECCIÓN PRENSA -->
+        <article id="prensa" class="tab-content">
             <div class="manuscript">
                 <header class="letter-header">
-                    <h1 class="addressee">Relación de adhesiones académicas</h1>
-                    <p class="signers-intro-text">El listado se actualiza a los días, tras validar las nuevas firmas.</p>
+                    <h1 class="addressee">Prensa y Comunicación</h1>
+                    <p class="subject">Clipping y contacto para medios</p>
                 </header>
 
-                <div class="signers-list" id="signers-container">
-                    <!-- Aquí se irán incorporando los nombres -->
-                    <div class="signer-entry placeholder-entry">
-                        <p>Los nuevos firmantes aparecerán aquí tras la validación de sus datos institucionales.</p>
+                <section class="press-clipping">
+                    <h3 class="section-subtitle">Clipping</h3>
+                    <div class="clipping-list">
+                        <div class="clipping-item">
+                            <span class="clipping-date">01/03/2025</span>
+                            <span class="clipping-author">Víctor López</span>
+                            <a href="https://www.publico.es/politica/memoria-publica/archivos-represion-franquista-muro-secretismo-cosa-peor-20-anos.html" target="_blank" class="clipping-link">
+                                <span class="clipping-media">Público</span> — Los archivos de la represión franquista, un muro de secretismo: ‘La cosa está peor que hace 20 años’
+                            </a>
+                        </div>
+                        <div class="clipping-item">
+                            <span class="clipping-date">17/04/2026</span>
+                            <span class="clipping-author">Ángel Viñas et al.</span>
+                            <a href="https://www.eldiario.es/opinion/tribuna-abierta/archivo-general-ministerio-interior-dejacion-opacidad_129_13075339.html" target="_blank" class="clipping-link">
+                                <span class="clipping-media">elDiario.es</span> — El Archivo General del Ministerio del Interior: entre la dejación y la opacidad
+                            </a>
+                        </div>
+                        <div class="clipping-item">
+                            <span class="clipping-date">13/04/2026</span>
+                            <span class="clipping-author">Laura Gutiérrez</span>
+                            <a href="https://cadenaser.com/nacional/2026/04/13/el-ministerio-del-interior-impide-el-acceso-integro-a-los-documentos-del-franquismo-que-alberga-en-su-archivo-de-manera-irregular-cadena-ser/" target="_blank" class="clipping-link">
+                                <span class="clipping-media">Cadena SER</span> — El Ministerio del Interior impide el acceso íntegro a los documentos del franquismo que alberga en su archivo de manera irregular
+                            </a>
+                        </div>
+                        <div class="clipping-item">
+                            <span class="clipping-date">21/04/2026</span>
+                            <span class="clipping-author">Pilar Mera</span>
+                            <a href="https://elpais.com/opinion/2026-04-21/abrir-el-archivo.html" target="_blank" class="clipping-link">
+                                <span class="clipping-media">El País</span> — Abrir el archivo
+                            </a>
+                        </div>
+                        <div class="clipping-item">
+                            <span class="clipping-date">21/04/2026</span>
+                            <span class="clipping-author">Marta Borraz</span>
+                            <a href="https://www.eldiario.es/sociedad/borrado-nombres-papeles-franquismo-archivo-ministerio-interior-frenando-investigacion_1_13159430.html" target="_blank" class="clipping-link">
+                                <span class="clipping-media">elDiario.es</span> — El borrado de nombres en los papeles del franquismo del archivo del Ministerio del Interior: ‘Está frenando la investigación’
+                            </a>
+                        </div>
                     </div>
-                </div>
+                </section>
+
+                <section class="press-contact">
+                    <h3 class="section-subtitle">Contacto</h3>
+                    <p>Para consultas de prensa puede dirigirse a:</p>
+                    <div class="contact-box">
+                        <p><strong>Email:</strong> <a href="mailto:firmas.archivos.abiertos@gmail.com">firmas.archivos.abiertos@gmail.com</a></p>
+                    </div>
+                </section>
             </div>
         </article>
+
     </main>
 
     <footer class="simple-footer">

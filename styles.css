@@ -260,9 +260,18 @@ p {
 
 /* Sección de firmas */
 .signature-section {
-    margin-top: 80px;
-    padding-top: 40px;
-    border-top: 2px solid var(--ink);
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+}
+
+.firman-header {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .signature-card {
@@ -323,11 +332,26 @@ p {
 }
 
 .signers-intro-text {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-style: italic;
-    color: var(--muted-ink);
-    margin: 0;
+    color: var(--ink);
+    margin: 10px 0 15px;
     padding: 0;
+    line-height: 1.4;
+}
+
+.institutional-link {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--border-color);
+    transition: all 0.3s;
+}
+
+.institutional-link:hover {
+    text-decoration-color: var(--accent-red);
+    color: var(--accent-red);
 }
 
 .signers-list {
@@ -514,4 +538,77 @@ p {
     text-align: left;
     font-weight: 500;
     background-color: #fcfcfc;
+}
+
+/* Sección de Prensa y Clipping */
+.clipping-list {
+    list-style: none;
+    margin: 30px 0 50px;
+}
+
+.clipping-item {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.clipping-item:last-child {
+    border-bottom: none;
+}
+
+.clipping-date {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--muted-ink);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.clipping-author {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 5px;
+}
+
+.clipping-link {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    display: block;
+    transition: color 0.3s;
+}
+
+.clipping-media {
+    font-weight: 700;
+    color: var(--accent-red);
+}
+
+.clipping-link:hover {
+    color: var(--accent-red);
+}
+
+.contact-box {
+    margin-top: 20px;
+    padding: 25px;
+    background: #f8f8f6;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.contact-box p {
+    margin-bottom: 0;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+}
+
+.contact-box a {
+    color: var(--accent-red);
+    text-decoration: none;
+    font-weight: 600;
 }
